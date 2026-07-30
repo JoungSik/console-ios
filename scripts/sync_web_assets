@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby
+
+require "fileutils"
+require "json"
+require "pathname"
+
+project_root = Pathname(__dir__).join("..").expand_path
+web_root = Pathname(ENV.fetch("CONSOLE_WEB_ROOT", project_root.join("..", "console").to_s)).expand_path
+manifest_path = web_root.join("app/views/pwa/manifest.json.erb")
+icon_path = web_root.join("public/icon.png")
+
+abort("웹 manifest를 찾을 수 없습니다: #{manifest_path}") unless manifest_path.file?
+abort("웹 아이콘을 찾을 수 없습니다: #{icon_path}") unless icon_path.file?
+abort("ImageMagick의 magick 명령이 필요합니다.") unless system("command", "-v", "magick", out: File::NULL)
+
+manifest = JSON.parse(manifest_path.read)
+metadata = manifest.slice("name", "short_name", "description", "theme_color")
+metadata_path = project_root.join("Console/Resources/app-metadata.json")
+app_icon_path = project_root.join("Console/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png")
+
+metadata_path.write("#{JSON.pretty_generate(metadata)}\n")
+
+generated = system(
+  "magick",
+  icon_path.to_s,
+  "-background", manifest.fetch("theme_color"),
+  "-alpha", "remove",
+  "-alpha", "off",
+  "-resize", "1024x1024!",
+  app_icon_path.to_s
+)
+abort("iOS AppIcon 생성에 실패했습니다.") unless generated
+
+puts "동기화 완료: #{metadata_path}"
+puts "동기화 완료: #{app_icon_path}"

@@ -1,0 +1,5 @@
+#include "Base.xcconfig"
+
+APP_DISPLAY_NAME = Console
+CONSOLE_ENVIRONMENT = Release
+CONSOLE_BASE_URL = https:/$()/console.joungsik.com
