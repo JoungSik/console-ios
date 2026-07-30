@@ -7,3 +7,4 @@
 - Mac의 로컬 IP가 변경되면 `Console/Configuration/Debug.xcconfig`를 갱신한다.
 - URL은 Build Configuration에서 주입하고 앱 코드에 환경별 URL 문자열을 직접 작성하지 않는다.
 - 개발자별 signing 값은 Git에서 제외한 `Console/Configuration/Signing.xcconfig`에 작성하고, 저장소에는 실제 Team ID를 추가하지 않는다.
+- Xcode의 `Signing & Capabilities`에서 Team을 직접 선택해 `project.pbxproj`에 `DEVELOPMENT_TEAM`을 기록하지 않는다.

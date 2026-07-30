@@ -26,6 +26,7 @@ cp Console/Configuration/Signing.example.xcconfig Console/Configuration/Signing.
 `Signing.xcconfig`의 `DEVELOPMENT_TEAM`을 자신의 Apple Developer Team ID로 변경합니다.
 기본 Bundle Identifier를 사용할 수 없는 Team이라면 `PRODUCT_BUNDLE_IDENTIFIER`도 고유한 값으로 변경합니다.
 이 설정은 Debug와 Release에 동일하게 적용됩니다.
+Xcode의 `Signing & Capabilities`에서 Team을 직접 선택하면 `project.pbxproj`가 변경되므로 Team 변경은 `Signing.xcconfig`에서만 수행합니다.
 
 ## 웹 자산 동기화
 
