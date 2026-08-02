@@ -73,6 +73,12 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         Hotwire.config.applicationUserAgentPrefix = AppEnvironment.userAgentPrefix
         Hotwire.config.backButtonDisplayMode = .minimal
         Hotwire.config.animateReplaceActions = true
+        Hotwire.config.defaultViewController = { url in
+            AppWebViewController(url: url)
+        }
+        Hotwire.registerBridgeComponents([
+            ThemeBridgeComponent.self
+        ])
 
 #if DEBUG
         Hotwire.config.debugLoggingEnabled = true
