@@ -14,10 +14,13 @@
 		844BA7B82B9A488A008F48DB /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BA7AD2B9A488A008F48DB /* AppEnvironment.swift */; };
 		844BA7B92B9A488A008F48DB /* path-configuration.json in Resources */ = {isa = PBXBuildFile; fileRef = 844BA7AE2B9A488A008F48DB /* path-configuration.json */; };
 		848E12212BD813CA009BB0A4 /* HotwireNative in Frameworks */ = {isa = PBXBuildFile; productRef = 848E12202BD813CA009BB0A4 /* HotwireNative */; };
-		D00000000000000000000001 /* AppMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000001 /* AppMetadata.swift */; };
 		D00000000000000000000002 /* AppSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000002 /* AppSettingsViewController.swift */; };
-		D00000000000000000000004 /* app-metadata.json in Resources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000004 /* app-metadata.json */; };
 		D00000000000000000000005 /* AppTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0000000000000000000000B /* AppTabs.swift */; };
+		D00000000000000000000006 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0000000000000000000000C /* AppTheme.swift */; };
+		D00000000000000000000007 /* AppWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0000000000000000000000D /* AppWebViewController.swift */; };
+		D00000000000000000000008 /* ServerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0000000000000000000000E /* ServerTheme.swift */; };
+		D00000000000000000000009 /* ThemeBridgeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0000000000000000000000F /* ThemeBridgeComponent.swift */; };
+		D0000000000000000000000A /* NavigatorThemeInvalidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000010 /* NavigatorThemeInvalidator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,13 +32,16 @@
 		844BA7A22B9A4889008F48DB /* SceneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneController.swift; sourceTree = "<group>"; };
 		844BA7AD2B9A488A008F48DB /* AppEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
 		844BA7AE2B9A488A008F48DB /* path-configuration.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "path-configuration.json"; sourceTree = "<group>"; };
-		C00000000000000000000001 /* AppMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMetadata.swift; sourceTree = "<group>"; };
 		C00000000000000000000002 /* AppSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsViewController.swift; sourceTree = "<group>"; };
-		C00000000000000000000004 /* app-metadata.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "app-metadata.json"; sourceTree = "<group>"; };
 		C00000000000000000000005 /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
 		C00000000000000000000006 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		C00000000000000000000007 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		C0000000000000000000000B /* AppTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabs.swift; sourceTree = "<group>"; };
+		C0000000000000000000000C /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
+		C0000000000000000000000D /* AppWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppWebViewController.swift; sourceTree = "<group>"; };
+		C0000000000000000000000E /* ServerTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerTheme.swift; sourceTree = "<group>"; };
+		C0000000000000000000000F /* ThemeBridgeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeBridgeComponent.swift; sourceTree = "<group>"; };
+		C00000000000000000000010 /* NavigatorThemeInvalidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorThemeInvalidator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,11 +78,12 @@
 			children = (
 				C00000000000000000000008 /* Configuration */,
 				C00000000000000000000009 /* Resources */,
+				C00000000000000000000011 /* Theme */,
 				844BA7A22B9A4889008F48DB /* SceneController.swift */,
 				844BA78A2B9A4843008F48DB /* AppDelegate.swift */,
-				C00000000000000000000001 /* AppMetadata.swift */,
 				C00000000000000000000002 /* AppSettingsViewController.swift */,
 				C0000000000000000000000B /* AppTabs.swift */,
+				C0000000000000000000000D /* AppWebViewController.swift */,
 				844BA7982B9A4844008F48DB /* Info.plist */,
 				844BA7932B9A4844008F48DB /* Assets.xcassets */,
 				844BA7952B9A4844008F48DB /* LaunchScreen.storyboard */,
@@ -106,9 +113,19 @@
 			isa = PBXGroup;
 			children = (
 				844BA7AE2B9A488A008F48DB /* path-configuration.json */,
-				C00000000000000000000004 /* app-metadata.json */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		C00000000000000000000011 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				C0000000000000000000000C /* AppTheme.swift */,
+				C0000000000000000000000E /* ServerTheme.swift */,
+				C0000000000000000000000F /* ThemeBridgeComponent.swift */,
+				C00000000000000000000010 /* NavigatorThemeInvalidator.swift */,
+			);
+			path = Theme;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,7 +194,6 @@
 			files = (
 				844BA7942B9A4844008F48DB /* Assets.xcassets in Resources */,
 				844BA7B92B9A488A008F48DB /* path-configuration.json in Resources */,
-				D00000000000000000000004 /* app-metadata.json in Resources */,
 				844BA7972B9A4844008F48DB /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -192,9 +208,13 @@
 				844BA7B82B9A488A008F48DB /* AppEnvironment.swift in Sources */,
 				844BA78B2B9A4843008F48DB /* AppDelegate.swift in Sources */,
 				844BA7B02B9A488A008F48DB /* SceneController.swift in Sources */,
-				D00000000000000000000001 /* AppMetadata.swift in Sources */,
 				D00000000000000000000002 /* AppSettingsViewController.swift in Sources */,
 				D00000000000000000000005 /* AppTabs.swift in Sources */,
+				D00000000000000000000006 /* AppTheme.swift in Sources */,
+				D00000000000000000000007 /* AppWebViewController.swift in Sources */,
+				D00000000000000000000008 /* ServerTheme.swift in Sources */,
+				D00000000000000000000009 /* ThemeBridgeComponent.swift in Sources */,
+				D0000000000000000000000A /* NavigatorThemeInvalidator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,7 +371,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -379,7 +399,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

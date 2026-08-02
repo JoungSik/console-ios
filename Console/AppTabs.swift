@@ -26,21 +26,13 @@ enum AppTabs {
         url: AppEnvironment.todoURL
     )
 
-    private static let account = HotwireTab(
-        id: "account",
-        title: "계정",
-        image: UIImage(systemName: "person.crop.circle"),
-        selectedImage: UIImage(systemName: "person.crop.circle.fill"),
-        url: AppEnvironment.accountURL
-    )
-
     private static let settings = HotwireTab(
         id: "settings",
-        title: "앱 설정",
+        title: "설정",
         image: UIImage(systemName: "gearshape"),
         selectedImage: UIImage(systemName: "gearshape.fill"),
         url: AppEnvironment.appSettingsURL
     )
 
-    static let all = [home, journal, todo, account, settings]
+    static let all = [home, journal, todo, settings]
 }

@@ -104,8 +104,8 @@ extension SceneController: NavigatorDelegate {
         }
 
         return .acceptCustom(
-            AppSettingsViewController {
-                navigator.route(AppEnvironment.accountURL)
+            AppSettingsViewController { url in
+                navigator.route(url)
             }
         )
     }

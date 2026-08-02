@@ -7,6 +7,9 @@ enum AppEnvironment {
     static let todoURL = baseURL.appendingPathComponent("todos")
     static let loginURL = baseURL.appendingPathComponent("session/new")
     static let accountURL = baseURL.appendingPathComponent("mypage/user")
+    static let pluginsURL = baseURL.appendingPathComponent("mypage/plugins")
+    static let pushNotificationsURL = baseURL.appendingPathComponent("mypage/push_notifications")
+    static let privacyURL = baseURL.appendingPathComponent("privacy")
     static let appSettingsURL = baseURL.appendingPathComponent("hotwire-native/app-settings")
     static let pathConfigurationURL = baseURL.appendingPathComponent("hotwire-native/path-configuration.json")
 
