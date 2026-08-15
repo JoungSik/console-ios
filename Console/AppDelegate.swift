@@ -8,8 +8,23 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
         configureAppearance()
+        PushNotificationManager.shared.configure()
         configureHotwire()
         return true
+    }
+
+    func application(
+        _ application: UIApplication,
+        didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
+    ) {
+        PushNotificationManager.shared.didRegisterForRemoteNotifications(deviceToken: deviceToken)
+    }
+
+    func application(
+        _ application: UIApplication,
+        didFailToRegisterForRemoteNotificationsWithError error: Error
+    ) {
+        PushNotificationManager.shared.didFailToRegisterForRemoteNotifications(error: error)
     }
 
     func application(
@@ -21,7 +36,41 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func configureAppearance() {
-        UINavigationBar.appearance().scrollEdgeAppearance = .init()
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.configureWithOpaqueBackground()
+        navigationBarAppearance.backgroundColor = AppTheme.background
+        navigationBarAppearance.shadowColor = .clear
+        navigationBarAppearance.titleTextAttributes = [.foregroundColor: AppTheme.primaryText]
+        navigationBarAppearance.largeTitleTextAttributes = [.foregroundColor: AppTheme.primaryText]
+
+        let navigationBar = UINavigationBar.appearance()
+        navigationBar.tintColor = AppTheme.accent
+        navigationBar.standardAppearance = navigationBarAppearance
+        navigationBar.compactAppearance = navigationBarAppearance
+        navigationBar.scrollEdgeAppearance = navigationBarAppearance
+
+        let tabBarAppearance = UITabBarAppearance()
+        tabBarAppearance.configureWithOpaqueBackground()
+        tabBarAppearance.backgroundColor = AppTheme.surface
+        tabBarAppearance.shadowColor = AppTheme.border
+        configureTabBarItemAppearance(tabBarAppearance.stackedLayoutAppearance)
+        configureTabBarItemAppearance(tabBarAppearance.inlineLayoutAppearance)
+        configureTabBarItemAppearance(tabBarAppearance.compactInlineLayoutAppearance)
+
+        let tabBar = UITabBar.appearance()
+        tabBar.tintColor = AppTheme.accent
+        tabBar.unselectedItemTintColor = AppTheme.secondaryText
+        tabBar.standardAppearance = tabBarAppearance
+        if #available(iOS 15.0, *) {
+            tabBar.scrollEdgeAppearance = tabBarAppearance
+        }
+    }
+
+    private func configureTabBarItemAppearance(_ appearance: UITabBarItemAppearance) {
+        appearance.normal.iconColor = AppTheme.secondaryText
+        appearance.normal.titleTextAttributes = [.foregroundColor: AppTheme.secondaryText]
+        appearance.selected.iconColor = AppTheme.accent
+        appearance.selected.titleTextAttributes = [.foregroundColor: AppTheme.accent]
     }
 
     private func configureHotwire() {
@@ -39,6 +88,13 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         Hotwire.config.applicationUserAgentPrefix = AppEnvironment.userAgentPrefix
         Hotwire.config.backButtonDisplayMode = .minimal
         Hotwire.config.animateReplaceActions = true
+        Hotwire.config.defaultViewController = { url in
+            AppWebViewController(url: url)
+        }
+        Hotwire.registerBridgeComponents([
+            ThemeBridgeComponent.self,
+            PushNotificationBridgeComponent.self
+        ])
 
 #if DEBUG
         Hotwire.config.debugLoggingEnabled = true

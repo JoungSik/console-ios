@@ -6,6 +6,12 @@
 	<string>$(CONSOLE_BASE_URL)</string>
 	<key>ConsoleEnvironment</key>
 	<string>$(CONSOLE_ENVIRONMENT)</string>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<false/>
+	<key>FirebaseMessagingAutoInitEnabled</key>
+	<false/>
+	<key>FirebaseMessagingInstallationIdEnabled</key>
+	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsLocalNetworking</key>
