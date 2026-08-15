@@ -306,6 +306,9 @@ enum PushNotificationError: String, Encodable {
 struct PushNotificationResponse: Encodable {
     let firebaseInstallationId: String?
     let platform = "ios"
+    let deviceModel: String
+    let osVersion: String
+    let appVersion: String?
     let permission: PushNotificationPermission
     let registered: Bool
     let error: PushNotificationError?
@@ -317,6 +320,9 @@ struct PushNotificationResponse: Encodable {
         error: PushNotificationError? = nil
     ) {
         self.firebaseInstallationId = firebaseInstallationId
+        self.deviceModel = UIDevice.current.model
+        self.osVersion = "\(UIDevice.current.systemName) \(UIDevice.current.systemVersion)"
+        self.appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
         self.permission = permission
         self.registered = registered
         self.error = error
