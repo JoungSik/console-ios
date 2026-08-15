@@ -8,8 +8,23 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
         configureAppearance()
+        PushNotificationManager.shared.configure()
         configureHotwire()
         return true
+    }
+
+    func application(
+        _ application: UIApplication,
+        didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
+    ) {
+        PushNotificationManager.shared.didRegisterForRemoteNotifications(deviceToken: deviceToken)
+    }
+
+    func application(
+        _ application: UIApplication,
+        didFailToRegisterForRemoteNotificationsWithError error: Error
+    ) {
+        PushNotificationManager.shared.didFailToRegisterForRemoteNotifications(error: error)
     }
 
     func application(
@@ -77,7 +92,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             AppWebViewController(url: url)
         }
         Hotwire.registerBridgeComponents([
-            ThemeBridgeComponent.self
+            ThemeBridgeComponent.self,
+            PushNotificationBridgeComponent.self
         ])
 
 #if DEBUG

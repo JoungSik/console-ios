@@ -25,6 +25,12 @@ final class SceneController: UIResponder {
             name: ThemeSyncCenter.didReceiveServerTheme,
             object: nil
         )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(didRequestOpenPushNotification),
+            name: PushNotificationNavigationCenter.didRequestOpen,
+            object: nil
+        )
     }
 
     deinit {
@@ -43,6 +49,19 @@ final class SceneController: UIResponder {
             navigators,
             activeNavigator: tabBarController.activeNavigator
         )
+    }
+
+    @objc private func didRequestOpenPushNotification() {
+        openPendingPushNotificationIfNeeded()
+    }
+
+    private func openPendingPushNotificationIfNeeded() {
+        guard window != nil,
+              let url = PushNotificationNavigationCenter.takePendingURL() else {
+            return
+        }
+
+        tabBarController.activeNavigator.route(url)
     }
 
     private func completeAuthenticationIfNeeded() {
@@ -138,6 +157,7 @@ extension SceneController: UIWindowSceneDelegate {
         window.makeKeyAndVisible()
         tabBarController.delegate = self
         tabBarController.load(AppTabs.all)
+        openPendingPushNotificationIfNeeded()
     }
 }
 
