@@ -274,15 +274,19 @@ extension PushNotificationManager: UNUserNotificationCenterDelegate {
 
     nonisolated func userNotificationCenter(
         _ center: UNUserNotificationCenter,
-        didReceive response: UNNotificationResponse
-    ) async {
-        guard let destinationURL = PushNotificationDestination.url(
+        didReceive response: UNNotificationResponse,
+        withCompletionHandler completionHandler: @escaping @Sendable () -> Void
+    ) {
+        let destinationURL = PushNotificationDestination.url(
             from: response.notification.request.content.userInfo
-        ) else {
-            return
-        }
+        )
 
-        await PushNotificationNavigationCenter.open(destinationURL)
+        Task { @MainActor in
+            if let destinationURL {
+                PushNotificationNavigationCenter.open(destinationURL)
+            }
+            completionHandler()
+        }
     }
 }
 
